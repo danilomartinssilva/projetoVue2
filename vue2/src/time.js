@@ -28,6 +28,7 @@ export class Time{
 			}	
 			else{
 				this.updateInfo(0,gols,golsAdversario);
+				//COMENTANDO ESTA LINHA
 				timeAdversario.updateInfo(3,golsAdversario,gols);
 			}		
 		}
