@@ -1,5 +1,5 @@
 
-
+import event from '../event';
 export default {
     template: `
 
@@ -24,6 +24,11 @@ export default {
             </form>
         </div>
     `,
+    mounted(){
+        event.$on('get-times',(times)=>{
+            this.initJogo(times);
+        });
+    },
     data(){
         return {
             novoJogo: {
@@ -45,7 +50,7 @@ export default {
             let gols = +this.novoJogo.casa.gols;
             let golsAdversario = +this.novoJogo.fora.gols;
             timeCasa.fimJogo(timeAdversario, gols, golsAdversario);
-            this.$parent.showView('tabela');
+            event.$emit('show-time-list');
            
         },
         initJogo(times){

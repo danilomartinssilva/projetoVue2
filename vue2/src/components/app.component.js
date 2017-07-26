@@ -1,5 +1,6 @@
 import TimeListComponent from './time-list.component';
 import TimeJogoComponent from './time-jogo.component';
+import event from '../event';
 export default {
     components: {
         "time-list" : TimeListComponent,
@@ -9,7 +10,7 @@ export default {
     <div class="container">
          <div class="row">
             <h3>Campeonato Brasileiro - Série A - 2016</h3>
-           
+
             <div v-show="view == 'tabela'">
                 <time-list></time-list>
             </div>
@@ -19,6 +20,16 @@ export default {
          </div>
     </div>
     `,
+    mounted(){
+        event.$on('show-time-list',()=>{
+            this.view = 'tabela';
+
+        });
+        event.$on('show-time-jogo',()=>{
+
+            this.view = 'novojogo';
+        });
+    },
     data() {
         return {
             view: 'tabela'

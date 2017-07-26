@@ -1,6 +1,6 @@
 import {Time} from '../time';
 import _ from 'lodash';
-
+import event from '../event';
 export default {
     template: `
          <div>
@@ -64,8 +64,11 @@ export default {
     },
     methods: {
         showNovoJogo(){
-    this.$parent.showView('novojogo');
-    this.$parent.$children[1].initJogo(this.times);
+   // this.$parent.showView('novojogo');
+    
+    event.$emit('show-time-jogo');
+    //this.$parent.$children[1].initJogo(this.times);
+    event.$emit('get-times',this.times);
       },  
        
         sortBy(coluna){
@@ -76,7 +79,7 @@ export default {
     computed: {
         timesFiltered(){
             let colecao = _.orderBy(this.times, this.order.keys, this.order.sort);
-            
+
 
             return _.filter(colecao, item => {
                 return item.nome.indexOf(this.filter) >=0;
