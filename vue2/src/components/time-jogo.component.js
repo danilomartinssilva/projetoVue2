@@ -1,9 +1,7 @@
-
-
 import store from '../store';
+
 export default {
     template: `
-
         <div>
             <form class="form-inline">
                 <div class="form-group">
@@ -26,7 +24,7 @@ export default {
         </div>
     `,
     mounted(){
-       this.initJogo(store.state.times); 
+      this.initJogo(store.state.times);
     },
     data(){
         return {
@@ -43,25 +41,19 @@ export default {
         };
     },
     methods: {
-         fimJogo(){
+        fimJogo(){
             let timeAdversario = this.novoJogo.fora.time;
             let timeCasa = this.novoJogo.casa.time;
             let gols = +this.novoJogo.casa.gols;
             let golsAdversario = +this.novoJogo.fora.gols;
             timeCasa.fimJogo(timeAdversario, gols, golsAdversario);
-            store.commit('update',timeCasa);
-            store.commit('update',timeAdversario);
+            store.commit('update', timeCasa);
+            store.commit('update', timeAdversario);
             store.commit('show-time-list');
-
         },
         initJogo(times){
-            let indexCasa ,
-                indexFora ;
-                while(indexCasa==indexFora){
-                    indexCasa = Math.floor(Math.random() * 20);
-                     indexFora = Math.floor(Math.random() * 20);
-
-                }
+            let indexCasa = Math.floor(Math.random() * 20),
+                indexFora = Math.floor(Math.random() * 20);
 
             this.novoJogo.casa.time = times[indexCasa];
             this.novoJogo.casa.gols = 0;
