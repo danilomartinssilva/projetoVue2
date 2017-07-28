@@ -57,13 +57,6 @@ export default {
             return store.getters.timesRebaixados;
 
         },
-        timesFiltered(){
-            let colecao = _.orderBy(this.times, this.order.keys, this.order.sort);
-
-
-            return _.filter(colecao, item => {
-                return item.nome.indexOf(this.filter) >=0;
-            });
-        }
+    
     },
 }

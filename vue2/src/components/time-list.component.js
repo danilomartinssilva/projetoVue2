@@ -1,5 +1,6 @@
 import {Time} from '../time';
 import _ from 'lodash';
+
 import store from '../store';
 export default {
     template: `
@@ -43,13 +44,9 @@ export default {
     },
     
     methods: {
-        showNovoJogo(){
-   // this.$parent.showView('novojogo');
-    
-    event.$emit('show-time-jogo');
-    //this.$parent.$children[1].initJogo(this.times);
-    event.$emit('get-times',this.times);
-      },  
+      showNovoJogo(){
+        store.commit('show-time-novojogo');
+    },
        
         sortBy(coluna){
             this.order.keys = coluna;
@@ -57,17 +54,16 @@ export default {
         }
     },
     computed: {
-         times(){
+        times(){
             return store.state.times;
-
+            //return this.$store.state.times;
         },
         timesFiltered(){
             let colecao = _.orderBy(this.times, this.order.keys, this.order.sort);
 
-
             return _.filter(colecao, item => {
-                return item.nome.indexOf(this.filter) >=0;
+                return item.nome.indexOf(this.filter) >= 0;
             });
         }
-    },
+    }
 }
